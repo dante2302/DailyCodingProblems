@@ -1,123 +1,154 @@
 using Problems.P1;
 namespace Tests;
-
-public class P1
+#if !IGNORE_TESTS
+public class P1 
 {
     private readonly Solution _solution = new();
+
     [Fact]
-    public void Test__Basic()
+    public void Basic()
     {
-        var input = new[] { 3, 4, -1, 1 };
+        int[] input = [3, 4, -1, 1];
+
         var result = _solution.Method(input);
+
         Assert.Equal(2, result);
     }
 
     [Fact]
-    public void Test__ConsecutivePositiveNumbers()
+    public void ConsecutivePositiveNumbers()
     {
-        var input = new[] { 1, 2, 0 };
+        int[] input = [1, 2, 0];
+
         var result = _solution.Method(input);
+
         Assert.Equal(3, result);
     }
 
     [Fact]
-    public void Test__Duplicates()
+    public void Duplicates()
     {
-        var input = new[] { 1, 1, 0 };
+        int[] input = [1, 1, 0];
+
         var result = _solution.Method(input);
+
         Assert.Equal(2, result);
     }
 
     [Fact]
-    public void Test__NegativeNumbers()
+    public void NegativeNumbers()
     {
-        var input = new[] { -1, -2, -3 };
+        int[] input = [-1, -2, -3];
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 
     [Fact]
-    public void Test__AllPositiveNumbers()
+    public void AllPositiveNumbers()
     {
         int[] input = [1, 2, 3, 4, 5];
+
         var result = _solution.Method(input);
+
         Assert.Equal(6, result);
     }
 
     [Fact]
-    public void Test__MixedNumbers()
+    public void MixedNumbers()
     {
         int[] input = [7, 8, 9, 11, 12];
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 
     [Fact]
-    public void Test__SingleElement()
+    public void SingleElement()
     {
         int[] input = [1];
+
         var result = _solution.Method(input);
+
         Assert.Equal(2, result);
     }
 
     [Fact]
-    public void Test__EmptyArray()
+    public void EmptyArray()
     {
         int[] input = [];
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 
     [Fact]
-    public void Test__LargeNumbers()
+    public void LargeNumbers()
     {
-        var input = new[] { 100, 200, 300, 400 };
+        int[] input = [100, 200, 300, 400];
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 
     [Fact]
-    public void Test__DescendingOrder()
+    public void DescendingOrder()
     {
-        var input = new[] { 5, 4, 3, 2, 1 };
+        int[] input = [5, 4, 3, 2, 1];
+
         var result = _solution.Method(input);
+
         Assert.Equal(6, result);
     }
 
     [Fact]
-    public void Test__SequentialNegativeAndPositiveNumbers()
+    public void SequentialNegativeAndPositiveNumbers()
     {
-        var input = new[] { -1, -2, -3, 1, 2, 3 };
+        int[] input = [-1, -2, -3, 1, 2, 3];
+
         var result = _solution.Method(input);
+
         Assert.Equal(4, result);
     }
 
     [Fact]
-    public void Test__LargeArray()
+    public void LargeArray()
     {
-        var input = new int[1000];
+        int[] input = new int[1000];
         for (int i = 0; i < 999; i++)
         {
-            input[i] = i + 2; // 2 to 1000
+            input[i] = i + 2;
         }
-        input[999] = -1; // Adding a negative number
+        input[999] = -1;
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 
     [Fact]
-    public void Test__DuplicatesOnly()
+    public void DuplicatesOnly()
     {
-        var input = new[] { 1, 1, 1, 1, 1 };
+        int[] input = [1, 1, 1, 1, 1];
+
         var result = _solution.Method(input);
+
         Assert.Equal(2, result);
     }
 
     [Fact]
-    public void Test__MixedNegativesAndPositives()
+    public void MixedNegativesAndPositives()
     {
-        var input = new[] { -10, 5, 2, -3, 3 };
+        int[] input = [-10, 5, 2, -3, 3];
+
         var result = _solution.Method(input);
+
         Assert.Equal(1, result);
     }
 }
+
+#endif

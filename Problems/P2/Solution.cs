@@ -9,14 +9,16 @@ public class Solution : ISolution
     {
         int pref = 1;
         int suff = 1;
-        for(int i = 0; i < nums.Length; i++)
+        int arrayLength = nums.Length;
+        int[] answer = Enumerable.Repeat(1, arrayLength).ToArray();
+        for (int i = 0; i < arrayLength; i++)
         {
-            nums[i] *= pref;
-            nums[nums.Length - i - 1] *= suff;
+            answer[i] *= pref;
+            answer[arrayLength - i - 1] *= suff;
             pref *= nums[i];
-            suff *= nums[nums.Length - i - 1];
+            suff *= nums[arrayLength - i - 1];
         }
-        return nums;
+        return answer;
     }
 
     public SolutionInfo Info { get; set; } = new()
