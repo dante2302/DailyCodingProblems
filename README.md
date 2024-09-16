@@ -1,1 +1,4 @@
-# A repository containing a daily coding problem series of 6 problems, written in javascript
+# DailyCodingProblems - C# Solutions
+
+Welcome to the DailyCodingProblems repository! This repository contains a collection of coding problems solved in C#, asked by the DailyCodingProblem team every day through their email service.
+
