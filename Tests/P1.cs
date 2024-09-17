@@ -1,6 +1,6 @@
 using Problems.P1;
 namespace Tests;
-#if !IGNORE_TESTS
+
 public class P1 
 {
     private readonly Solution _solution = new();
@@ -150,5 +150,3 @@ public class P1
         Assert.Equal(1, result);
     }
 }
-
-#endif
