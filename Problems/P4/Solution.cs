@@ -4,9 +4,9 @@ namespace Problems.P4;
 
 public class Solution : ISolution
 {
-    public void Method()
+    public double[] Method(int[] numbers)
     {
-
+        return [];
     }
 
     public SolutionInfo Info { get; set; } = new()
