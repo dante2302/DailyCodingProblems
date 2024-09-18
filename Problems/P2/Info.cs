@@ -5,8 +5,9 @@ namespace Problems.P2;
 
 public class Info : IProblemDescriptor
 {
-    public string Heading { get; } = "Product of Array Except Self";
-    public string Description { get; } = @"
+    public string Difficulty => "Medium";
+    public string Heading => "Product of Array Except Self";
+    public string Description => @"
         Given an array of integers, return a new array such that 
         each element at index i of the new array is the product of 
         all the numbers in the original array except the one at i.
