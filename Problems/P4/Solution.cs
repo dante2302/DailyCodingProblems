@@ -6,7 +6,12 @@ public class Solution : ISolution
 {
     public double[] Method(int[] numbers)
     {
-        return [];
+        double[] answer = [];
+        for(int i = 0; i < numbers.Length; i++)
+        {
+            
+        }
+        return answer;
     }
 
     public SolutionInfo Info { get; set; } = new()
