@@ -14,7 +14,7 @@ public class P4
 
         double[] result = _solution.Method(input);
 
-        Assert.Equal(result, expected);
+        Assert.Equal(expected, result);
     }
 
     [Fact]
