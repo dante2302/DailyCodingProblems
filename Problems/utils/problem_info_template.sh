@@ -20,12 +20,10 @@ read -p "Description: " DESCRIPTION
 valid_difficulty=false
 # Loop until valid input is received
 while [ "$valid_difficulty" = false ]; do
-    # Prompt for input
     read -p "Enter a valid Difficulty: (Easy, Medium, Hard)" DIFFICULTY
 
-    # Validate the input value
-    if [[ "$DIFFICULTY" == "male" || "$DIFFICULTY" == "female" ]]; then
-        valid_difficulty=true  # Set the flag to true to exit the loop
+    if [[ "$DIFFICULTY" == "Easy" || "$DIFFICULTY" == "Medium" || "$DIFFICULTY" == "Hard"]]; then
+        valid_difficulty=true  
     else
         echo "Invalid input. Please enter one of the following: Easy Medium Hard."
     fi
@@ -42,4 +40,42 @@ done
 
 cd ../
 
-mkdir "${P}${NUMBER}"
+NEW_DIR="${P}${NUMBER}"
+
+mkdir NEW_DIR
+cd NEW_DIR
+
+
+cat <<EOL > "Info.cs"
+using Problems.utils;
+namespace Problems.P${NUMBER};
+
+public class Info : IProblemDescriptor
+{
+    public string Heading => "${HEADING}";
+    public string Description => @"${DESCRIPTION}";
+
+    public ProblemDifficulty Difficulty => ProblemDifficulty.${DIFFICULTY} 
+}
+EOL
+
+cat <<EOL > "Solution.cs"
+using Problems.utils;
+
+namespace Problems.P${NUMBER};
+
+public class Solution : ISolution
+{
+    public int Method(int[] numbers)
+    {
+    }
+
+    public SolutionInfo Info { get; set;} = new()
+    {
+        Approach = @"";
+        TimeComplexity = "",
+        SpaceComplexity = "",
+        TimeSpent = ""
+    };
+}
+EOL
