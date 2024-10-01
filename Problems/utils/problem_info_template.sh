@@ -16,7 +16,20 @@ fi
 
 read -p "Heading: " HEADING
 read -p "Description: " DESCRIPTION
-read -p "Difficulty: " DIFFICULTY
+
+valid_difficulty=false
+# Loop until valid input is received
+while [ "$valid_difficulty" = false ]; do
+    # Prompt for input
+    read -p "Enter a valid Difficulty: (Easy, Medium, Hard)" DIFFICULTY
+
+    # Validate the input value
+    if [[ "$DIFFICULTY" == "male" || "$DIFFICULTY" == "female" ]]; then
+        valid_difficulty=true  # Set the flag to true to exit the loop
+    else
+        echo "Invalid input. Please enter one of the following: Easy Medium Hard."
+    fi
+done
 
 P="P"
 NUMBER=1
