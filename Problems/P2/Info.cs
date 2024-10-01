@@ -15,5 +15,6 @@ public class Info : IProblemDescriptor
         Output: [120, 60, 40, 30, 24]. 
         --------------------------------
         Input: [3, 2, 1], 
-        Output: [2, 3, 6].";
+        Output:string [2, 3, 6].";
+    public ProblemDifficulty Difficulty { get; } = ProblemDifficulty.Medium;
 }
