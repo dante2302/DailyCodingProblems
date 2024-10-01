@@ -1,6 +1,7 @@
 #!/bin/bash
 
-EXPECTED_URL="https://github.com/yourusername/yourrepository.git"
+EXPECTED_SSH="git@github.com:dante2302/DailyCodingProblems.git"
+EXPECTED_URL="https://github.com/dante2302/DailyCodingProblems.git"
 
 if ! git rev-parse --is-inside-work-tree &>/dev/null; then
     echo "Error: This script must be run inside a Git repository."
@@ -10,8 +11,13 @@ fi
 CURRENT_URL=$(git config --get remote.origin.url)
 
 if [ "$CURRENT_URL" != "$EXPECTED_URL" ]; then
-    echo "Error: This script can only be run in the repository at '$EXPECTED_URL'."
+    if [ "$CURRENT_URL" != "$EXPECTED_SSH" ]; then
+    echo "Error: This script can only be run in the repository 'DailyCodingProblems'."
+    echo "Current URL: ${CURRENT_URL}"
+    echo "Expected URL: ${EXPECTED_URL}"
+    echo "Expected SSH(if used): ${EXPECTED_SSH}"
     exit 1
+    fi
 fi
 
 read -p "Heading: " HEADING
@@ -20,31 +26,31 @@ read -p "Description: " DESCRIPTION
 valid_difficulty=false
 # Loop until valid input is received
 while [ "$valid_difficulty" = false ]; do
-    read -p "Enter a valid Difficulty: (Easy, Medium, Hard)" DIFFICULTY
+    read -p "Enter a valid Difficulty (Easy, Medium, Hard) : " DIFFICULTY
 
-    if [[ "$DIFFICULTY" == "Easy" || "$DIFFICULTY" == "Medium" || "$DIFFICULTY" == "Hard"]]; then
+    if [[ "$DIFFICULTY" == "Easy" || "$DIFFICULTY" == "Medium" || "$DIFFICULTY" == "Hard" ]]; then
         valid_difficulty=true  
     else
         echo "Invalid input. Please enter one of the following: Easy Medium Hard."
     fi
 done
 
-P="P"
 NUMBER=1
-
-# Checks the current sequence number in a directory full of directories as such: /P1, /P2 ....
-# And Assigns the next corresponding number
-while [[ -d "${P}${NUMBER}" ]]; do
-    NUMBER=$((NUMBER + 1))
-done
 
 cd ../
 
-NEW_DIR="${P}${NUMBER}"
+# Checks the current sequence number in a directory full of directories as such: /P1, /P2 ....
+# And Assigns the next corresponding number
+while true; do
+    NEW_DIR="P$NUMBER"
+    if [[ ! -d "$NEW_DIR" ]]; then
+        break
+    fi
+    ((NUMBER++))
+done
 
-mkdir NEW_DIR
-cd NEW_DIR
-
+mkdir $NEW_DIR
+cd $NEW_DIR
 
 cat <<EOL > "Info.cs"
 using Problems.utils;
@@ -55,7 +61,7 @@ public class Info : IProblemDescriptor
     public string Heading => "${HEADING}";
     public string Description => @"${DESCRIPTION}";
 
-    public ProblemDifficulty Difficulty => ProblemDifficulty.${DIFFICULTY} 
+    public ProblemDifficulty Difficulty => ProblemDifficulty.${DIFFICULTY}; 
 }
 EOL
 
@@ -66,7 +72,7 @@ namespace Problems.P${NUMBER};
 
 public class Solution : ISolution
 {
-    public int Method(int[] numbers)
+    public void Method()
     {
     }
 
@@ -79,3 +85,7 @@ public class Solution : ISolution
     };
 }
 EOL
+
+clear
+echo "Created Repository: ${NEW_DIR}"
+echo "Created Files(from templates): Info.cs Solution.cs"
