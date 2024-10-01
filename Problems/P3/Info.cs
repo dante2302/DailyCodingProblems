@@ -5,6 +5,8 @@ namespace Problems.P3;
 
 public class Info : IProblemDescriptor
 {
+
+    public string Difficulty => "Easy";
     public string Description { get; } = @"
         Good morning! Here's your coding interview problem for today.
 

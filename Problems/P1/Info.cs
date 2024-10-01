@@ -3,6 +3,7 @@ namespace Problems.P1;
 
 public class Info : IProblemDescriptor
 {
+    public string Difficulty { get; } = "Medium";
     public string Heading { get; }  = "First Missing Positive Integer";
     public string Description { get; } = @"
         Given an array of integers, find the first missing positive integer. 
