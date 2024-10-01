@@ -5,7 +5,6 @@ namespace Problems.P2;
 
 public class Info : IProblemDescriptor
 {
-    public string Difficulty => "Medium";
     public string Heading => "Product of Array Except Self";
     public string Description => @"
         Given an array of integers, return a new array such that 
@@ -17,5 +16,5 @@ public class Info : IProblemDescriptor
         --------------------------------
         Input: [3, 2, 1], 
         Output:string [2, 3, 6].";
-    public ProblemDifficulty Difficulty { get; } = ProblemDifficulty.Medium;
+    public ProblemDifficulty Difficulty => ProblemDifficulty.Medium;
 }
